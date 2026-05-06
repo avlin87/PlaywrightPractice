@@ -8,7 +8,7 @@ test.beforeEach(async ({ page }) => {
   await page.goto('/todomvc');
 });
 
-test('adds todo items and updates counter', async ({ }) => {
+test('adds todo items and updates counter', async () => {
   await todoPage.addTodoItem('Learn Playwright');
   await todoPage.assertTodoVisibleAndCounter('Learn Playwright', '1 item left', 1);
 
@@ -18,7 +18,7 @@ test('adds todo items and updates counter', async ({ }) => {
 
 });
 
-test('marks todo item as completed', async ({ }) => {
+test('marks todo item as completed', async () => {
   await todoPage.addTodoItem('Learn Playwright');
   await todoPage.assertTodoVisibleAndCounter('Learn Playwright', '1 item left', 1);
 
