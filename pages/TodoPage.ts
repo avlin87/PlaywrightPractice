@@ -31,6 +31,7 @@ export class TodoPage {
             .getByLabel('Toggle Todo')
             .setChecked(true);
         await expect(todo).toHaveClass(/completed/);
+
     }
 
     todoItems() {
