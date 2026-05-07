@@ -1,5 +1,5 @@
 import { test } from '@playwright/test';
-import { TodoPage } from '../pages/TodoPage';
+import { TodoPage } from '@pages/TodoPage';
 
 let todoPage: TodoPage;
 
