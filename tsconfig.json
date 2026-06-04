@@ -1,18 +1,10 @@
 {
   "compilerOptions": {
     "paths": {
-      "@pages/*": [
-        "./src/pages/*"
-      ],
-      "@api/*": [
-        "./src/api/*"
-      ],
-      "@utils/*": [
-        "./src/utils/*"
-      ],
-      "@fixtures/*": [
-        "./src/fixtures/*"
-      ]
+      "@pages/*": ["./src/pages/*"],
+      "@api/*": ["./src/api/*"],
+      "@utils/*": ["./src/utils/*"],
+      "@fixtures/*": ["./src/fixtures/*"]
     }
   }
 }

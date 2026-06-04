@@ -10,19 +10,38 @@ test.beforeEach(async ({ page }) => {
 
 test('adds todo items and updates counter', async () => {
   await todoPage.addTodoItem('Learn Playwright');
-  await todoPage.assertTodoVisibleAndCounter('Learn Playwright', '1 item left', 1);
+  await todoPage.assertTodoVisibleAndCounter(
+    'Learn Playwright',
+    '1 item left',
+    1,
+  );
 
   await todoPage.addTodoItem('Become Expert');
-  await todoPage.assertTodoVisibleAndCounter('Learn Playwright', '2 items left', 2);
-  await todoPage.assertTodoVisibleAndCounter('Become Expert', '2 items left', 2);
-
+  await todoPage.assertTodoVisibleAndCounter(
+    'Learn Playwright',
+    '2 items left',
+    2,
+  );
+  await todoPage.assertTodoVisibleAndCounter(
+    'Become Expert',
+    '2 items left',
+    2,
+  );
 });
 
 test('marks todo item as completed', async () => {
   await todoPage.addTodoItem('Learn Playwright');
-  await todoPage.assertTodoVisibleAndCounter('Learn Playwright', '1 item left', 1);
+  await todoPage.assertTodoVisibleAndCounter(
+    'Learn Playwright',
+    '1 item left',
+    1,
+  );
 
   await todoPage.completeTodoItem('Learn Playwright');
 
-  await todoPage.assertTodoVisibleAndCounter('Learn Playwright', '0 items left', 1);
+  await todoPage.assertTodoVisibleAndCounter(
+    'Learn Playwright',
+    '0 items left',
+    1,
+  );
 });
