@@ -1,10 +1,11 @@
 import { test, expect, type APIResponse } from '@playwright/test';
+import { APIAssertions } from '@utils/apiAssertions';
 
 test.describe('Posts API', () => {
     test('GET /posts returns a list of posts', async ({ request }) => {
         const response = await request.get('/posts');
 
-        expectJsonResponse(response, 200);
+        APIAssertions.assertJsonResponse(response, 200);
 
         const body = await response.json();
 
@@ -20,7 +21,7 @@ test.describe('Posts API', () => {
         const postId = 1;
         const response = await request.get(`/posts/${postId}`);
 
-        expectJsonResponse(response, 200);
+        APIAssertions.assertJsonResponse(response, 200);
 
         const body = await response.json();
 
@@ -35,7 +36,7 @@ test.describe('Posts API', () => {
         const postId = 9999;
         const response = await request.get(`/posts/${postId}`);
 
-        expectJsonResponse(response, 404);
+        APIAssertions.assertJsonResponse(response, 404);
 
         const body = await response.json();
 
@@ -53,7 +54,7 @@ test.describe('Posts API', () => {
             data: newPost,
         });
 
-        expectJsonResponse(response, 201);
+        APIAssertions.assertJsonResponse(response, 201);
 
         const body = await response.json();
 
@@ -76,7 +77,7 @@ test.describe('Posts API', () => {
             data: updatedPost,
         });
 
-        expectJsonResponse(response, 200);
+        APIAssertions.assertJsonResponse(response, 200);
 
         const body = await response.json();
 
@@ -97,7 +98,7 @@ test.describe('Posts API', () => {
             data: partialUpdate,
         });
 
-        expectJsonResponse(response, 200);
+        APIAssertions.assertJsonResponse(response, 200);
 
         const body = await response.json();
         expect(body).not.toBeInstanceOf(Array);
@@ -109,15 +110,10 @@ test.describe('Posts API', () => {
         const postId = 1;
         const response = await request.delete(`/posts/${postId}`);
 
-        expectJsonResponse(response, 200);
+        APIAssertions.assertJsonResponse(response, 200);
 
         const body = await response.json();
 
         expect(body).toEqual({});
     });
 });
-
-function expectJsonResponse(response: APIResponse, statusCode: number) {
-    expect(response.status()).toBe(statusCode);
-    expect(response.headers()['content-type']).toContain('application/json');
-}
