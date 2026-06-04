@@ -1,5 +1,5 @@
 import { test, expect, type APIResponse } from '@playwright/test';
-import { APIAssertions } from '@utils/apiAssertions';
+import { APIAssertions } from '@utils/APIAssertions';
 
 test.describe('Posts API', () => {
     test('GET /posts returns a list of posts', async ({ request }) => {

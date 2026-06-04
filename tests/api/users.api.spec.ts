@@ -1,11 +1,11 @@
 import { test, expect } from '@playwright/test';
+import { APIAssertions } from '@utils/APIAssertions';
 
 test.describe('Users API', () => {
     test('GET /users returns a list of users', async ({ request }) => {
         const response = await request.get('/users');
 
-        expect(response.status()).toBe(200);
-        expect(response.headers()['content-type']).toContain('application/json');
+        APIAssertions.assertJsonResponse(response, 200);
 
         const body = await response.json();
 
@@ -20,8 +20,7 @@ test.describe('Users API', () => {
         const userId = 1;
         const response = await request.get(`/users/${userId}`);
 
-        expect(response.status()).toBe(200);
-        expect(response.headers()['content-type']).toContain('application/json');
+        APIAssertions.assertJsonResponse(response, 200);
 
         const body = await response.json();
 
@@ -35,8 +34,7 @@ test.describe('Users API', () => {
         const userId = 9999;
         const response = await request.get(`/users/${userId}`);
 
-        expect(response.status()).toBe(404);
-        expect(response.headers()['content-type']).toContain('application/json');
+        APIAssertions.assertJsonResponse(response, 404);
 
         const body = await response.json();
 
